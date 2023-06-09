@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "outDir": "build",
+      "lib": ["ESNext"],
+      "rootDir": "src",
+      "moduleResolution": "node",
+      "module": "commonjs",
+      "allowJs": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true,
+      "declaration": true,
+      "declarationMap": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true
+    },
+    "include": ["src/**/*"],
+    "exclude": [
+      "node_modules"
+    ]
+  }

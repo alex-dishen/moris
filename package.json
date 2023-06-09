@@ -1,0 +1,60 @@
+{
+  "name": "moris",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Oleksandr Didyshen",
+  "description": "React CLI to generate components",
+  "main": "./dist/index.js",
+  "bin": {
+    "moris": "./build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-dishen/moris"
+  },
+  "files": [
+    "dist",
+    "license",
+    "README.md"
+  ],
+  "keywords": [
+    "CLI",
+    "generate",
+    "create",
+    "files",
+    "template",
+    "templates",
+    "react",
+    "component",
+    "components"
+  ],
+  "bugs": {
+    "url": "https://github.com/alex-dishen/moris/issues"
+  },
+  "homepage": "https://github.com/alex-dishen/moris#readme",
+  "scripts": {
+    "build": "node esbuild",
+    "lint": "eslint --cache ./src ./pages",
+    "lint:format": "prettier --write --loglevel warn \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
+    "lint:fix": "eslint --cache --fix ./src ./pages"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "chalk": "^5.2.0",
+    "commander": "^10.0.1",
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-next": "^13.1.6",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
+  }
+}
