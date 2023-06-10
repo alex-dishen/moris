@@ -8,16 +8,6 @@ import {
   returnDefaultContent,
 } from './helpers';
 
-const dirname = process.cwd();
-
-const {
-  indexContent,
-  stylesContent,
-  hookContent,
-  typesContent,
-  constantsContent,
-} = returnMorisSettings(dirname);
-
 program.version('1.0.0').description('Custom CLI for React');
 
 program
@@ -28,8 +18,8 @@ program
   .description('Create a new React component')
   .option('-p, --path <path>', 'Specify a custom path')
   .action((name: string, options) => {
+    const dirname = process.cwd();
     const componentPath = options.path || 'src/components';
-
     let componentFolder: string;
     let pathWithoutSrc: string;
 
@@ -41,24 +31,33 @@ program
       pathWithoutSrc = `components`;
     }
 
-    const componentFile = path.join(componentFolder, 'index.tsx');
-    const stylesFile = path.join(componentFolder, 'styles.ts');
-    const typesFile = path.join(componentFolder, 'types.ts');
-    const hookFile = path.join(componentFolder, `use${name}.ts`);
-    const constantsFile = path.join(componentFolder, 'constants.ts');
+    const {
+      indexContent,
+      stylesContent,
+      hookContent,
+      typesContent,
+      constantsContent,
+      useAbsolutePath,
+    } = returnMorisSettings(dirname, name, pathWithoutSrc);
 
     const {
       defaultHookContent,
       defaultIndexContent,
       defaultStylesContent,
       defaultTypesContent,
-    } = returnDefaultContent(name, pathWithoutSrc);
+    } = returnDefaultContent(name, pathWithoutSrc, useAbsolutePath);
 
     const typesFileContent = typesContent || defaultTypesContent;
     const stylesFileContent = stylesContent || defaultStylesContent;
     const hookFileContent = hookContent || defaultHookContent;
     const componentContent = indexContent || defaultIndexContent;
     const constantsFileContent = constantsContent || '';
+
+    const componentFile = path.join(componentFolder, 'index.tsx');
+    const stylesFile = path.join(componentFolder, 'styles.ts');
+    const typesFile = path.join(componentFolder, 'types.ts');
+    const hookFile = path.join(componentFolder, `use${name}.ts`);
+    const constantsFile = path.join(componentFolder, 'constants.ts');
 
     if (fs.existsSync(componentFolder))
       return logCommandStatus(name, componentPath, true);
