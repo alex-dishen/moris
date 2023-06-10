@@ -4,6 +4,7 @@ export type TMorisSettings = {
   hookContent?: string;
   typesContent?: string;
   constantsContent?: string;
+  useAbsolutePath?: string;
 };
 
 export type TReturnDefaultContent = {
