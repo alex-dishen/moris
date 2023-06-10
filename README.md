@@ -1,7 +1,7 @@
 <h1 align='center'><b>Moris</b></h1>
 
 <div align='center'>
-<img height='200px' src='images/moris.png' alt='moris' />
+<img height='220px' src='images/moris.png' alt='moris' />
 </div>
 </br>
 
@@ -17,7 +17,9 @@ $ moris create component Example --path src/components
 $ moris c c Example -p src/components
 ```
 
-<h2>Arguments</h2>
+All the commands provided above do the same action
+
+<h3><b>Arguments</b></h3>
 
 <table>
   <tr>
@@ -36,18 +38,23 @@ $ moris c c Example -p src/components
 
 </br>
 
-## **Configuration file**
+<h2><b>Configuration file</b></h2>
 
-<h2>🚨 Note:</h2> To change Moris default settings create a file <code>moris.json</code> at the root of your project
 
-## Usage
+To change Moris default settings create a file <code>moris.json</code> at the root of your project
+
+<h3><b>Usage</b></h3>
 
 ```json
+moris.json
+
 {
     "indexContent": "import React from 'react'\n",
     "stylesContent": "import styled from 'styled'\n export const AppWrapper = styled.div``\n"
 }
 ```
+
+<h3><b>Arguments</b></h3>
 
 <table>
   <tr>
