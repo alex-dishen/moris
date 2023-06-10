@@ -5,6 +5,7 @@ export type TMorisSettings = {
   typesContent?: string;
   constantsContent?: string;
   useAbsolutePath?: string;
+  defaultComponentSet?: string;
 };
 
 export type TReturnDefaultContent = {
@@ -12,4 +13,9 @@ export type TReturnDefaultContent = {
   defaultIndexContent: string;
   defaultStylesContent: string;
   defaultTypesContent: string;
+};
+
+export type TOptions = {
+  path?: string;
+  size?: string;
 };
