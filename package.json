@@ -1,10 +1,10 @@
 {
   "name": "moris",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Oleksandr Didyshen",
   "description": "React CLI to generate components",
-  "main": "./dist/index.js",
+  "main": "./build/index.js",
   "bin": {
     "moris": "./build/index.js"
   },
@@ -13,20 +13,24 @@
     "url": "git+https://github.com/alex-dishen/moris"
   },
   "files": [
-    "dist",
+    "build",
     "license",
     "README.md"
   ],
   "keywords": [
     "CLI",
-    "generate",
+    "make",
     "create",
+    "generate",
     "files",
+    "folders",
     "template",
     "templates",
     "react",
     "component",
-    "components"
+    "components",
+    "react-component",
+    "react-components"
   ],
   "bugs": {
     "url": "https://github.com/alex-dishen/moris/issues"

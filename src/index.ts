@@ -7,6 +7,11 @@ import {
   returnMorisSettings,
   returnDefaultContent,
 } from './helpers';
+import { TOptions } from './types';
+
+const dirname = process.cwd();
+let componentFolder: string;
+let pathWithoutSrc: string;
 
 program.version('1.0.0').description('Custom CLI for React');
 
@@ -17,11 +22,9 @@ program
   .alias('c')
   .description('Create a new React component')
   .option('-p, --path <path>', 'Specify a custom path')
-  .action((name: string, options) => {
-    const dirname = process.cwd();
+  .option('-s, --size <size>', 'Set component size')
+  .action((name: string, options: TOptions) => {
     const componentPath = options.path || 'src/components';
-    let componentFolder: string;
-    let pathWithoutSrc: string;
 
     if (options.path) {
       componentFolder = path.join(dirname, options.path, name);
@@ -38,6 +41,7 @@ program
       typesContent,
       constantsContent,
       useAbsolutePath,
+      defaultComponentSet,
     } = returnMorisSettings(dirname, name, pathWithoutSrc);
 
     const {
@@ -50,7 +54,7 @@ program
     const typesFileContent = typesContent || defaultTypesContent;
     const stylesFileContent = stylesContent || defaultStylesContent;
     const hookFileContent = hookContent || defaultHookContent;
-    const componentContent = indexContent || defaultIndexContent;
+    const componentFileContent = indexContent || defaultIndexContent;
     const constantsFileContent = constantsContent || '';
 
     const componentFile = path.join(componentFolder, 'index.tsx');
@@ -62,12 +66,37 @@ program
     if (fs.existsSync(componentFolder))
       return logCommandStatus(name, componentPath, true);
 
+    const configurations = {
+      s: [componentFile, stylesFile],
+      m: [componentFile, stylesFile, typesFile],
+      l: [componentFile, stylesFile, typesFile, hookFile],
+      xl: [componentFile, stylesFile, typesFile, hookFile, constantsFile],
+    };
+
     fs.mkdirSync(componentFolder, { recursive: true });
-    fs.writeFileSync(componentFile, componentContent);
-    fs.writeFileSync(stylesFile, stylesFileContent);
-    fs.writeFileSync(typesFile, typesFileContent);
-    fs.writeFileSync(hookFile, hookFileContent);
-    fs.writeFileSync(constantsFile, constantsFileContent);
+
+    const elements =
+      (options.size as keyof typeof configurations) ||
+      defaultComponentSet ||
+      'm';
+
+    const getFileContent = (file: string): string => {
+      if (file.includes('index')) return componentFileContent;
+
+      if (file.includes('styles')) return stylesFileContent;
+
+      if (file.includes('types')) return typesFileContent;
+
+      if (file.includes('use')) return hookFileContent;
+
+      if (file.includes('constants')) return constantsFileContent;
+
+      return '';
+    };
+
+    configurations[elements].forEach(file => {
+      fs.writeFileSync(file, getFileContent(file));
+    });
 
     logCommandStatus(name, componentPath);
   });

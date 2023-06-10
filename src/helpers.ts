@@ -73,17 +73,30 @@ export const returnDefaultContent = (
   pathWithoutSrc: string,
   useAbsolutePath?: string,
 ): TReturnDefaultContent => {
+  const displayTypesImport = true;
+  const displayHookImport = true;
+  const modifiedPath = returnModifiedPath(pathWithoutSrc, useAbsolutePath);
+
   const hookName = `use${name}`;
   const propsName = `${name}Props`;
   const stylesName = `${name}Wrapper`;
-  const modifiedPath = returnModifiedPath(pathWithoutSrc, useAbsolutePath);
 
-  const hookImport = useAbsolutePath
+  const typesPath = useAbsolutePath ? `${modifiedPath}/types` : './types';
+  const stylesPath = useAbsolutePath ? `${modifiedPath}/styles` : './styles';
+  const hookPath = useAbsolutePath
     ? `${modifiedPath}/${hookName}`
     : `./${hookName}`;
 
-  const typesImport = useAbsolutePath ? `${modifiedPath}/types` : './types';
-  const stylesImport = useAbsolutePath ? `${modifiedPath}/styles` : './styles';
+  const hookImport = displayHookImport
+    ? `import { ${hookName} } from '${hookPath}';\n`
+    : '';
+  const typesImport = displayTypesImport
+    ? `import { ${propsName} } from '${typesPath}';\n`
+    : '';
+  const componentProps = displayTypesImport ? `{}: ${propsName}` : '';
+  const hookCall = displayHookImport ? `\n  ${hookName}();\n` : '';
+
+  // DEFAULT CONTENTS
 
   const defaultTypesContent = `export type ${propsName} = {};\n`;
 
@@ -93,12 +106,9 @@ export const ${stylesName} = styled.div\`\`;\n`;
   const defaultHookContent = `import { useState, useEffect } from 'react';\n
 export const ${hookName} = () => {};\n`;
 
-  const defaultIndexContent = `import { ${hookName} } from '${hookImport}';
-import { ${propsName} } from '${typesImport}';
-import { ${stylesName} } from '${stylesImport}';\n
-const ${name} = ({}: ${propsName}) => {
-use${name}();\n
-return <${stylesName}></${stylesName}>;
+  const defaultIndexContent = `${hookImport}${typesImport}import { ${stylesName} } from '${stylesPath}';\n
+const ${name} = (${componentProps}) => {${hookCall}
+  return <${stylesName}></${stylesName}>;
 };\n
 export default ${name};\n`;
 
