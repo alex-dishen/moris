@@ -48,7 +48,7 @@ $ yarn global add moris
     <th><h3><b>Command</b></h3></th>
     <th><h3><b>Alias</b></h3></th>
     <th><h3><b>Default</b></h3></th>
-    <th width='22%'><h3><b>Usage</b></h3></th>
+    <th width='25%'><h3><b>Usage</b></h3></th>
     <th><h3><b>Description</b></h3></th>
   </tr>
   <tr>
@@ -59,7 +59,7 @@ $ yarn global add moris
     <td>Command to tell Moris to create a component</td>
   </tr>
   <tr>
-    <td colspan='5' align='center'><h2><b>Options</b></h2></td>
+    <td colspan='5' align='center'><h3><b>Options</b></h3></td>
   </tr>
   <tr>
     <td><code>--path</code></td>
