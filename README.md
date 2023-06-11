@@ -170,6 +170,10 @@ moris.json
     <td><code>s</code> <code>m</code> <code>l</code> <code>xl</code></td>
   </tr>
   <tr>
+    <td>defaultPath</td>
+    <td><code>"defaultPath": "src/features"</code></td>
+  </tr>
+  <tr>
     <td>indexContent</td>
     <td><code>"indexContent": "import React from 'react'\n"</code></td>
   </tr>
@@ -199,17 +203,17 @@ moris.json
 <table>
   <tr>
     <th><h3><b>Variable</b></h3></th>
-    <th><h3><b>Description</b></h3></th>
     <th><h3><b>Usage</b></h3></th>
+    <th><h3><b>Description</b></h3></th>
   </tr>
   <tr>
     <td><code>${name}</code></td>
-    <td>Uses a dynamic name that you pass when creating a component instead of a statically generated</td>
     <td><code>export const ${name}Wrapper = styled.div``</code></td>
+    <td>Uses a dynamic name that you pass when creating a component instead of a statically generated</td>
   </tr>
   <tr>
     <td><code>${path}</code></td>
-    <td>Uses a dynamic path that you pass when creating a component instead of a statically generated</td>
     <td><code>import ${name}Wrapper from '${path}${name}'</code></td>
+    <td>Uses a dynamic path that you pass when creating a component instead of a statically generated</td>
   </tr>
 </table>

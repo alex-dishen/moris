@@ -9,10 +9,6 @@ import {
 } from './helpers';
 import { TOptions } from './types';
 
-const dirname = process.cwd();
-let componentFolder: string;
-let pathWithoutSrc: string;
-
 program.version('1.0.0').description('Custom CLI for React');
 
 program
@@ -24,15 +20,10 @@ program
   .option('-p, --path <path>', 'Specify a custom path')
   .option('-s, --size <size>', 'Set component size')
   .action((name: string, options: TOptions) => {
-    const componentPath = options.path || 'src/components';
+    const dirname = process.cwd();
 
-    if (options.path) {
-      componentFolder = path.join(dirname, options.path, name);
-      pathWithoutSrc = options.path.replace('src/', '');
-    } else {
-      componentFolder = path.join(dirname, 'src', 'components', name);
-      pathWithoutSrc = `components`;
-    }
+    let componentFolder = path.join(dirname, 'src', 'components', name);
+    let pathWithoutSrc = `components`;
 
     const {
       indexContent,
@@ -42,7 +33,20 @@ program
       constantsContent,
       useAbsolutePath,
       defaultComponentSet,
+      defaultPath,
     } = returnMorisSettings(dirname, name, pathWithoutSrc);
+
+    const componentPath = options.path || defaultPath || 'src/components';
+
+    if (defaultPath && !options.path) {
+      componentFolder = path.join(dirname, defaultPath, name);
+      pathWithoutSrc = defaultPath.replace('src/', '');
+    }
+
+    if (options.path) {
+      componentFolder = path.join(dirname, options.path, name);
+      pathWithoutSrc = options.path.replace('src/', '');
+    }
 
     const {
       defaultHookContent,
