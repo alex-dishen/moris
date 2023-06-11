@@ -25,6 +25,12 @@ program
     let componentFolder = path.join(dirname, 'src', 'components', name);
     let pathWithoutSrc = `components`;
 
+    const componentFile = path.join(componentFolder, 'index.tsx');
+    const stylesFile = path.join(componentFolder, 'styles.ts');
+    const typesFile = path.join(componentFolder, 'types.ts');
+    const hookFile = path.join(componentFolder, `use${name}.ts`);
+    const constantsFile = path.join(componentFolder, 'constants.ts');
+
     const {
       indexContent,
       stylesContent,
@@ -48,28 +54,6 @@ program
       pathWithoutSrc = options.path.replace('src/', '');
     }
 
-    const {
-      defaultHookContent,
-      defaultIndexContent,
-      defaultStylesContent,
-      defaultTypesContent,
-    } = returnDefaultContent(name, pathWithoutSrc, useAbsolutePath);
-
-    const typesFileContent = typesContent || defaultTypesContent;
-    const stylesFileContent = stylesContent || defaultStylesContent;
-    const hookFileContent = hookContent || defaultHookContent;
-    const componentFileContent = indexContent || defaultIndexContent;
-    const constantsFileContent = constantsContent || '';
-
-    const componentFile = path.join(componentFolder, 'index.tsx');
-    const stylesFile = path.join(componentFolder, 'styles.ts');
-    const typesFile = path.join(componentFolder, 'types.ts');
-    const hookFile = path.join(componentFolder, `use${name}.ts`);
-    const constantsFile = path.join(componentFolder, 'constants.ts');
-
-    if (fs.existsSync(componentFolder))
-      return logCommandStatus(name, componentPath, true);
-
     const configurations = {
       s: [componentFile, stylesFile],
       m: [componentFile, stylesFile, typesFile],
@@ -77,12 +61,33 @@ program
       xl: [componentFile, stylesFile, typesFile, hookFile, constantsFile],
     };
 
-    fs.mkdirSync(componentFolder, { recursive: true });
-
-    const elements =
+    const set =
       (options.size as keyof typeof configurations) ||
       defaultComponentSet ||
       'm';
+
+    const {
+      defaultHookContent,
+      defaultIndexContent,
+      defaultStylesContent,
+      defaultTypesContent,
+    } = returnDefaultContent(
+      name,
+      pathWithoutSrc,
+      useAbsolutePath,
+      configurations[set],
+    );
+
+    const typesFileContent = typesContent || defaultTypesContent;
+    const stylesFileContent = stylesContent || defaultStylesContent;
+    const hookFileContent = hookContent || defaultHookContent;
+    const componentFileContent = indexContent || defaultIndexContent;
+    const constantsFileContent = constantsContent || '';
+
+    if (fs.existsSync(componentFolder))
+      return logCommandStatus(name, componentPath, true);
+
+    fs.mkdirSync(componentFolder, { recursive: true });
 
     const getFileContent = (file: string): string => {
       if (file.includes('index')) return componentFileContent;
@@ -98,7 +103,7 @@ program
       return '';
     };
 
-    configurations[elements].forEach(file => {
+    configurations[set].forEach(file => {
       fs.writeFileSync(file, getFileContent(file));
     });
 

@@ -72,9 +72,10 @@ export const returnDefaultContent = (
   name: string,
   pathWithoutSrc: string,
   useAbsolutePath?: string,
+  config?: string[],
 ): TReturnDefaultContent => {
-  const displayTypesImport = true;
-  const displayHookImport = true;
+  const displayTypesImport = config?.some(set => set.indexOf('type') !== -1);
+  const displayHookImport = config?.some(set => set.indexOf('use') !== -1);
   const modifiedPath = returnModifiedPath(pathWithoutSrc, useAbsolutePath);
 
   const hookName = `use${name}`;

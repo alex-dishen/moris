@@ -1,6 +1,6 @@
 {
   "name": "moris",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "author": "Oleksandr Didyshen",
   "description": "React CLI to generate components",
