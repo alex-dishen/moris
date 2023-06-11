@@ -48,7 +48,7 @@ $ yarn global add moris
     <th><h3><b>Command</b></h3></th>
     <th><h3><b>Alias</b></h3></th>
     <th><h3><b>Default</b></h3></th>
-    <th width='25%'><h3><b>Usage</b></h3></th>
+    <th width='26%'><h3><b>Usage</b></h3></th>
     <th><h3><b>Description</b></h3></th>
   </tr>
   <tr>
