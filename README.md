@@ -1,57 +1,87 @@
 <h1 align='center'><b>Moris</b></h1>
 
 <div align='center'>
-<img height='220px' src='images/moris.png' alt='moris' />
+<img height='240px' src='images/moris.png' alt='moris' />
 </div>
+
+</br>
+
+[![NPM version][npm-image]][npm-url]
+
+[npm-image]: https://img.shields.io/npm/v/moris.svg
+[npm-url]: http://npmjs.org/package/moris
+
+Moris is a configurable npm package featuring a user-friendly CLI for effortless React component creation. It streamlines the process with templates, scaffolding options, and code consistency, boosting productivity in React development.
+
+<h2><b>Installation</b></h2>
+
+**npm**
+
+```bash
+$ npm i moris
+or
+$ npm i -g moris
+```
+
+**yarn**
+
+```bash
+$ yarn add moris
+or
+$ yarn global add moris
+```
+
 </br>
 
 <h2><b>CLI Usage</b></h2>
 
-<h3><b>Arguments</b></h3>
+<h3>🚨 Note:</h3>
+
+- If you installed package locally to use it add npx before each command: <code>npx moris c component Example</code>
+
+- If the package is installed globally then use it without npx: <code>moris create c Example</code>
+
+<h3><b>Commands</b></h3>
 
 <table>
   <tr>
-    <th><h3><b>Argument</b></h3></th>
+    <th><h3><b>Command</b></h3></th>
     <th><h3><b>Alias</b></h3></th>
     <th><h3><b>Default</b></h3></th>
+    <th width='30%'><h3><b>Usage</b></h3></th>
     <th><h3><b>Description</b></h3></th>
   </tr>
   <tr>
-    <td>create component</td>
-    <td>c c</td>
-    <td>-</td>
+    <td><code>create component</code></td>
+    <td><code>c</code> <code>c</code></td>
+    <td></td>
+    <td><code>moris c c Example</code></td>
     <td>Command to tell Moris to create a component</td>
   </tr>
   <tr>
-    <td>--path src/pages</td>
-    <td>-p src/pages</td>
-    <td>src/components</td>
+    <td colspan='5' align='center'><h3><b>Options</b></h3></td>
+  </tr>
+  <tr>
+    <td><code>--path</code></td>
+    <td><code>-p</code></td>
+    <td><code>src/components</code></td>
+    <td><code>moris c c Example -p src/pages</code></td>
     <td>Optional argument that is used to specify a path you want a component to be created at</td>
   </tr>
   <tr>
-    <td>--size s|m|l|xl</td>
-    <td>-s s|m|l|xl</td>
-    <td>m</td>
+    <td><code>--size</code></td>
+    <td><code>-s</code></td>
+    <td align='center'><code>m</code></td>
+    <td><code>moris c c Example -s l</code></td>
     <td>Optional argument that is used to specify a size of the component. <code>s</code> - index.tsx, styles.ts. <code>m</code> -  index.tsx, styles.ts, types.ts. <code>l</code> - index.tsx, styles.ts, types.ts, useExample.ts. <code>xl</code> - index.tsx, styles.ts, types.ts, useExample.ts, constants.ts</td>
   </tr>
 </table>
 
 </br>
 
-```sh
-$ moris create component Example
+<h2><b>Default files</b></h2>
 
-$ moris c c Example
-
-$ moris create component Example --path src/components
-
-$ moris c c Example -p src/components
-```
-All the commands provided above do the same action
-
-<h3><b>Default files</b></h3>
-
-After running any of the above commands will be created such folder structure and file contents:
+If you run command <code>moris c c Example -s xl</code> such folder structure and file contents will be created
 
 ```bash
 src
@@ -115,7 +145,7 @@ To change Moris default settings create a file <code>moris.json</code> at the ro
 moris.json
 
 {
-    "useAbsolutePath": "src",
+    "useAbsolutePath": "-",
     "indexContent": "import React from 'react'\nimport ${name}Wrapper from '${path}${name}'\n",
     "stylesContent": "import styled from 'styled'\n export const ${name}Wrapper = styled.div``\n"
 }
@@ -132,7 +162,7 @@ moris.json
   <tr>
     <td>useAbsolutePath</td>
     <td><code>"useAbsolutePath": "src"</code></td>
-    <td><code>"-"</code> path without any suffixes, <code>"anything you want"</code> any suffix you prefer</td>
+    <td><code>-</code> path without any suffixes, <code>anything you want</code> any suffix you prefer</td>
   </tr>
   <tr>
     <td>defaultComponentSet</td>
