@@ -37,9 +37,9 @@ $ yarn global add moris
 
 <h3>🚨 Note:</h3>
 
-- If you installed package locally to use it add npx before each command: <code>npx moris c component Example</code>
+- If you installed package locally use it with <code>npx</code> before each command: <code>npx moris c component Example</code>
 
-- If the package is installed globally then use it without npx: <code>moris create c Example</code>
+- If the package is installed globally then use it without <code>npx</code>: <code>moris create c Example</code>
 
 <h3><b>Commands</b></h3>
 
@@ -102,9 +102,9 @@ import { ExampleProps } from './types';
 import { ExampleWrapper } from './styles';
 
 const Example = ({}: ExampleProps) => {
-useExample();
+  useExample();
 
-return <ExampleWrapper></ExampleWrapper>;
+  return <ExampleWrapper></ExampleWrapper>;
 };
 
 export default Example;
