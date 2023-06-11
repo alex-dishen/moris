@@ -6,6 +6,7 @@ export type TMorisSettings = {
   constantsContent?: string;
   useAbsolutePath?: string;
   defaultComponentSet?: string;
+  defaultPath?: string;
 };
 
 export type TReturnDefaultContent = {
