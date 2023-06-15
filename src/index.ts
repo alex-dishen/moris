@@ -25,12 +25,6 @@ program
     let componentFolder = path.join(dirname, 'src', 'components', name);
     let pathWithoutSrc = `components`;
 
-    const componentFile = path.join(componentFolder, 'index.tsx');
-    const stylesFile = path.join(componentFolder, 'styles.ts');
-    const typesFile = path.join(componentFolder, 'types.ts');
-    const hookFile = path.join(componentFolder, `use${name}.ts`);
-    const constantsFile = path.join(componentFolder, 'constants.ts');
-
     const {
       indexContent,
       stylesContent,
@@ -53,6 +47,12 @@ program
       componentFolder = path.join(dirname, options.path, name);
       pathWithoutSrc = options.path.replace('src/', '');
     }
+
+    const componentFile = path.join(componentFolder, 'index.tsx');
+    const stylesFile = path.join(componentFolder, 'styles.ts');
+    const typesFile = path.join(componentFolder, 'types.ts');
+    const hookFile = path.join(componentFolder, `use${name}.ts`);
+    const constantsFile = path.join(componentFolder, 'constants.ts');
 
     const configurations = {
       s: [componentFile, stylesFile],
