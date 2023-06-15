@@ -25,12 +25,6 @@ program
     let componentFolder = path.join(dirname, 'src', 'components', name);
     let pathWithoutSrc = `components`;
 
-    const componentFile = path.join(componentFolder, 'index.tsx');
-    const stylesFile = path.join(componentFolder, 'styles.ts');
-    const typesFile = path.join(componentFolder, 'types.ts');
-    const hookFile = path.join(componentFolder, `use${name}.ts`);
-    const constantsFile = path.join(componentFolder, 'constants.ts');
-
     const {
       indexContent,
       stylesContent,
@@ -54,17 +48,32 @@ program
       pathWithoutSrc = options.path.replace('src/', '');
     }
 
+    const componentFile = path.join(componentFolder, 'index.tsx');
+    const stylesFile = path.join(componentFolder, 'styles.ts');
+    const typesFile = path.join(componentFolder, 'types.ts');
+    const hookFile = path.join(componentFolder, `use${name}.ts`);
+    const constantsFile = path.join(componentFolder, 'constants.ts');
+    const helpersFile = path.join(componentFolder, 'helpers.ts');
+
     const configurations = {
-      s: [componentFile, stylesFile],
-      m: [componentFile, stylesFile, typesFile],
-      l: [componentFile, stylesFile, typesFile, hookFile],
-      xl: [componentFile, stylesFile, typesFile, hookFile, constantsFile],
+      xs: [componentFile, stylesFile],
+      s: [componentFile, stylesFile, typesFile],
+      m: [componentFile, stylesFile, typesFile, hookFile],
+      l: [componentFile, stylesFile, typesFile, hookFile, helpersFile],
+      xl: [
+        componentFile,
+        stylesFile,
+        typesFile,
+        hookFile,
+        helpersFile,
+        constantsFile,
+      ],
     };
 
     const set =
       (options.size as keyof typeof configurations) ||
       defaultComponentSet ||
-      'm';
+      's';
 
     const {
       defaultHookContent,

@@ -71,9 +71,9 @@ $ yarn global add moris
   <tr>
     <td><code>--size</code></td>
     <td><code>-s</code></td>
-    <td align='center'><code>m</code></td>
+    <td align='center'><code>s</code></td>
     <td><code>moris c c Example -s l</code></td>
-    <td>Optional argument that is used to specify a size of the component. <code>s</code> - index.tsx, styles.ts. <code>m</code> -  index.tsx, styles.ts, types.ts. <code>l</code> - index.tsx, styles.ts, types.ts, useExample.ts. <code>xl</code> - index.tsx, styles.ts, types.ts, useExample.ts, constants.ts</td>
+    <td>Optional argument that is used to specify a size of the component. <code>xs</code> - index.tsx, styles.ts. <code>s</code> -  index.tsx, styles.ts, types.ts. <code>m</code> - index.tsx, styles.ts, types.ts, useExample.ts. <code>l</code> - index.tsx, styles.ts, types.ts, useExample.ts, constants.ts <code>xl</code> - index.tsx, styles.ts, types.ts, useExample.ts, constants.ts, helpers.ts</td>
   </tr>
 </table>
 
@@ -167,7 +167,7 @@ moris.json
   <tr>
     <td>defaultComponentSet</td>
     <td><code>"defaultComponentSet": "l"</code></td>
-    <td><code>s</code> <code>m</code> <code>l</code> <code>xl</code></td>
+    <td><code>xs</code> <code>s</code> <code>m</code> <code>l</code> <code>xl</code></td>
   </tr>
   <tr>
     <td>defaultPath</td>
