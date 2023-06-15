@@ -82,11 +82,19 @@ export const returnDefaultContent = (
   const propsName = `${name}Props`;
   const stylesName = `${name}Wrapper`;
 
-  const typesPath = useAbsolutePath ? `${modifiedPath}/types` : './types';
-  const stylesPath = useAbsolutePath ? `${modifiedPath}/styles` : './styles';
+  // IMPORT PATHS
+
+  const typesPath = useAbsolutePath
+    ? `${modifiedPath}/${name}/types`
+    : './types';
+  const stylesPath = useAbsolutePath
+    ? `${modifiedPath}/${name}/styles`
+    : './styles';
   const hookPath = useAbsolutePath
-    ? `${modifiedPath}/${hookName}`
+    ? `${modifiedPath}/${name}/${hookName}`
     : `./${hookName}`;
+
+  // IMPORTS
 
   const hookImport = displayHookImport
     ? `import { ${hookName} } from '${hookPath}';\n`
@@ -94,6 +102,7 @@ export const returnDefaultContent = (
   const typesImport = displayTypesImport
     ? `import { ${propsName} } from '${typesPath}';\n`
     : '';
+
   const componentProps = displayTypesImport ? `{}: ${propsName}` : '';
   const hookCall = displayHookImport ? `\n  ${hookName}();\n` : '';
 
